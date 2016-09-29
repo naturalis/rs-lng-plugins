@@ -1,0 +1,8 @@
+name    : api_search_lng
+author  : Tom Gleason, Montala Limited; modified by Ruud Altenburg, Naturalis
+version : 0.1
+desc    : Search API
+config_url: /plugins/api_search_lng/pages/setup.php
+info_url: /plugins/api_search_lng/?help=true
+default_priority: 999
+category: api

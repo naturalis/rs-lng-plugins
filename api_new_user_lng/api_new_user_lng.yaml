@@ -1,0 +1,6 @@
+name    : api_new_user_lng
+author  : Ruud Altenburg, Naturalis
+version : 0.1
+desc    : Add new Linnaeus user API
+default_priority: 999
+category: api
