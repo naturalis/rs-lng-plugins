@@ -1,12 +1,12 @@
 <?php
 
-include(dirname(__FILE__)."/../../include/db.php");
-include(dirname(__FILE__)."/../../include/general.php");
-include(dirname(__FILE__)."/../../include/dash_functions.php");
-include(dirname(__FILE__)."/../../include/collections_functions.php");
+include(readlink(dirname(__FILE__))."/../../include/db.php");
+include(readlink(dirname(__FILE__))."/../../include/general.php");
+include(readlink(dirname(__FILE__))."/../../include/dash_functions.php");
+include(readlink(dirname(__FILE__))."/../../include/collections_functions.php");
 $api=true;
 
-include(dirname(__FILE__)."/../../include/authenticate.php");
+include(readlink(dirname(__FILE__))."/../../include/authenticate.php");
 
 // required: check that this plugin is available to the user
 if (!in_array("api_new_user_lng",$plugins)){
@@ -68,9 +68,9 @@ if (!empty($newuser)) {
 		$_POST["approved"] = 1;
 		$_POST["username"] = $newuser;
 		$_POST["fullname"] = $newuser;
-		
+
 		save_user_lng($userId);
-		
+
 		unset($_POST['fullname'], $_POST['usergroup'], $_POST['approved']);
 		$output = $_POST;
 		unset($_POST);
@@ -141,7 +141,7 @@ function save_user_lng($ref)
             {
             $password = make_password();
             }
-        elseif($password != $lang['hidden'])	
+        elseif($password != $lang['hidden'])
             {
             $message = check_password($password);
             if($message !== true)
@@ -222,7 +222,7 @@ function save_user_lng($ref)
         {
         email_reset_link($email, true);
         }
-		
+
 	if(getval('approved', '')!='')
 		{
 		# Clear any user request messages
