@@ -1,12 +1,15 @@
 <?php
+// Circumventing the problem with __FILE__ when the plugin is used
+// through a symlink
+define('FILE', $_SERVER['SCRIPT_FILENAME']);
 
-include(readlink(dirname(__FILE__))."/../../include/db.php");
-include(readlink(dirname(__FILE__))."/../../include/general.php");
-include(readlink(dirname(__FILE__))."/../../include/dash_functions.php");
-include(readlink(dirname(__FILE__))."/../../include/collections_functions.php");
+include(dirname(FILE)."/../../include/db.php");
+include(dirname(FILE)."/../../include/general.php");
+include(dirname(FILE)."/../../include/dash_functions.php");
+include(dirname(FILE)."/../../include/collections_functions.php");
 $api=true;
 
-include(readlink(dirname(__FILE__))."/../../include/authenticate.php");
+include(dirname(FILE)."/../../include/authenticate.php");
 
 // required: check that this plugin is available to the user
 if (!in_array("api_new_user_lng",$plugins)){

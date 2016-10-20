@@ -1,16 +1,21 @@
 <?php
+// Circumventing the problem with __FILE__ when the plugin is used
+// through a symlink
+define('FILE', $_SERVER['SCRIPT_FILENAME']);
 
-include(readlink(dirname(__FILE__))."/../../include/db.php");
-include(readlink(dirname(__FILE__))."/../../include/general.php");
-include(readlink(dirname(__FILE__))."/../../include/search_functions.php");
-include(readlink(dirname(__FILE__))."/../../include/resource_functions.php");
-include(readlink(dirname(__FILE__))."/../../include/collections_functions.php");
+include(dirname(FILE)."/../../include/db.php");
+include(dirname(FILE)."/../../include/general.php");
+include(dirname(FILE)."/../../include/search_functions.php");
+include(dirname(FILE)."/../../include/resource_functions.php");
+include(dirname(FILE)."/../../include/collections_functions.php");
 $api=true;
 
-include(readlink(dirname(__FILE__))."/../../include/authenticate.php");
+include(dirname(FILE)."/../../include/authenticate.php");
 
 // required: check that this plugin is available to the user
-if (!in_array("api_search_lng",$plugins)){die("no access");}
+if (!in_array("api_new_user_lng",$plugins)){
+    jsonDie('No access to API');
+}
 
 $search=getval("search","");
 $search=refine_searchstring($search);
@@ -409,6 +414,12 @@ function httpProtocol() {
         $isSecure = true;
     }
     return $isSecure ? 'https' : 'http';
+}
+
+// Ruud 09-02-16: added to die with json error rather than 403
+function jsonDie ($m) {
+    header('Content-type: application/json');
+    die(json_encode(array('error' => $m)));
 }
 
 
