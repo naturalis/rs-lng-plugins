@@ -1,16 +1,17 @@
 <?php
 // Circumventing the problem with __FILE__ when the plugin is used
 // through a symlink
-define('FILE', $_SERVER['SCRIPT_FILENAME']);
+//define('FILE', $_SERVER['SCRIPT_FILENAME']);
+//define('FILE', exec('pwd'));
 
-include(dirname(FILE)."/../../include/db.php");
-include(dirname(FILE)."/../../include/general.php");
-include(dirname(FILE)."/../../include/search_functions.php");
-include(dirname(FILE)."/../../include/resource_functions.php");
-include(dirname(FILE)."/../../include/collections_functions.php");
+include(dirname(__FILE__)."/../../include/db.php");
+include(dirname(__FILE__)."/../../include/general.php");
+include(dirname(__FILE__)."/../../include/search_functions.php");
+include(dirname(__FILE__)."/../../include/resource_functions.php");
+include(dirname(__FILE__)."/../../include/collections_functions.php");
 $api=true;
 
-include(dirname(FILE)."/../../include/authenticate.php");
+include(dirname(__FILE__)."/../../include/authenticate.php");
 
 // required: check that this plugin is available to the user
 if (!in_array("api_new_user_lng",$plugins)){
